@@ -32,13 +32,20 @@ const ClipIcon = styled(AttachFile)`
     transform: 'rotate(40deg)'
 `;
 
-const Footer = () => {
+const Footer = ({sendText,setValue,value}) => {
   return (
     <Container>
         <EmojiEmotions></EmojiEmotions>
         <ClipIcon></ClipIcon>
         <Search>
-            <InputField placeholder="Type a message" />
+            <InputField
+             placeholder="Type a message"
+            inputProps={{ 'aria-label': 'search' }}
+            onChange={(e) => setValue(e.target.value)}
+            onKeyDown={(e) => sendText(e)}
+            value={value}
+           
+            />
         
         </Search>
     <Mic></Mic>
