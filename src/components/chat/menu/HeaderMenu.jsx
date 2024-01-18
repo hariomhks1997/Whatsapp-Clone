@@ -1,12 +1,10 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { MoreVert } from '@mui/icons-material';
-import { Menu, MenuItem, styled } from '@mui/material';
-
-
+import { MoreVert } from "@mui/icons-material";
+import { Menu, MenuItem, styled } from "@mui/material";
 
 //components
-import InfoDrawer from '../../drawer/InfoDrawer';
+import InfoDrawer from "../../drawer/InfoDrawer";
 
 const MenuOption = styled(MenuItem)`
     font-size: 14px
@@ -14,58 +12,57 @@ const MenuOption = styled(MenuItem)`
     color: #4A4A4A;
 `;
 
-
-
 const HeaderMenu = () => {
-    
-    const [open, setOpen] = useState(false);
-    const [openDrawer, setOpenDrawer] = useState(false);
-    
-   
+  const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
+  const handleClick = (event) => {
+    setOpen(event.currentTarget);
+  };
 
-    const handleClick = (event) => {
-        setOpen(event.currentTarget);
-    };
+  const handleClose = () => {
+    setOpen(null);
+  };
 
-    const handleClose = () => {
-        setOpen(null);
-    };
+  const toggleDrawer = () => {
+    setOpenDrawer(true);
+  };
 
-   
-
-    const toggleDrawer = () => {
-        setOpenDrawer(true);
-    }
-
-
-
-    return (
-        <>
-            <MoreVert onClick={handleClick} />
-            <Menu
-                anchorEl={open}
-                keepMounted
-                open={open}
-                onClose={handleClose}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-            >
-                <MenuOption onClick={() => { handleClose(); toggleDrawer()}}>Profile</MenuOption>
-                <MenuOption onClick={() => { handleClose(); }}>
-               
-                </MenuOption>
-            </Menu>
-            <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
-        </>
-    )
-}
+  return (
+    <>
+      <MoreVert onClick={handleClick} />
+      <Menu
+        anchorEl={open}
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MenuOption
+          onClick={() => {
+            handleClose();
+            toggleDrawer();
+          }}
+        >
+          Profile
+        </MenuOption>
+        <MenuOption
+          onClick={() => {
+            handleClose();
+          }}
+        ></MenuOption>
+      </Menu>
+      <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
+    </>
+  );
+};
 
 export default HeaderMenu;
