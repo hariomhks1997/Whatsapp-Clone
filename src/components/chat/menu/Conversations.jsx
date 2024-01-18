@@ -13,17 +13,17 @@ const StyledDivider = styled(Divider)`
     background-color: #e9edef;
     opacity: .6;
 `;
-const Conversations = () => {
+const Conversations = ({text}) => {
     const [users, setUsers] = useState([]);
     const {account}=useContext(AccountContext);
     useEffect(() => {
         const fetchData = async () => {
-            let response= await getUsers();
-           
-            setUsers(response);
+            let data = await getUsers();
+            let fiteredData = data.filter(user => user.name.toLowerCase().includes(text.toLowerCase()));
+            setUsers(fiteredData);
         }
         fetchData();
-    }, []);
+    }, [text]);
 
   return (
     <Component>
